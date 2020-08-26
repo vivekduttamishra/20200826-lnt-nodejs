@@ -33,7 +33,7 @@ i1(5);  // oparam=10, olocal=100, iparam=5, ilocal=50
 
 
 //what if I call outer() again with oparam=100
-let i2=outer(100); //oparam=100, iparam=1000
+let i2=outer(100); //oparam=100, local=1000
 
 //now we have two function objects i1, and i2. bother have their own closures
 // for i1() --> oparam=10, iparam=100
