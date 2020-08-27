@@ -20,19 +20,16 @@ function Person(name,age, location='Home'){ //default argument is allowed in ES2
     this.age=age;
     this.location=location;
 
-    this.toString=function(){
-        return `Person[name=${this.name}\tage=${this.age}\tlocation=${location}]`;
-    }
-
-    this.eat=function(food){
-        console.log(`${this.name} eats ${food}`);
-    }
-
+    //Added to every object of the class
     this.move=function(to){
         this.location=to;
     }
-
     
+}
+
+//Available to every object created using new Person()
+Person.prototype.toString=function(){
+    return `Person[name=${this.name}\tage=${this.age}\tlocation=${location}]`;
 }
 
 //to create an object you need to use the keyword new here
@@ -42,9 +39,7 @@ let p2=new Person('Shivanshi',14);
 let p3= new Object();
 p3.name='Sanjay';
 p3.age=50;
-
-
-
+p3.eat('something');
 
 
 console.log(`${p1}`);
