@@ -35,3 +35,13 @@ AuthorManager.prototype.remove=function(id){
    this.authors=newList;
 
 }
+
+
+
+function showAuthors(authors, heading=null){
+    console.log(heading);
+    for(let author of authors){
+        console.log(`${author}`);
+    }
+}
+
