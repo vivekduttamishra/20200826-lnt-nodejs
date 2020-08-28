@@ -21,6 +21,9 @@ let handleRoute=createRouteHandler(routes); //attach your business url handler h
 
 async function  requestHandler(request,response){
 
+    if(request.url==='' || request.url==='/')
+        request.url='/index.html' //set the default home page
+
     if(await handleStaticRequest(request,response))
         return; //request handled. work is done
 
@@ -34,7 +37,7 @@ async function  requestHandler(request,response){
         return ;
     }
     response.end();
-}
+} 
 
 //now we must pass the actual handler of business logic to the server
 let server= http.createServer(requestHandler); //we must tell which user code will handle the request
