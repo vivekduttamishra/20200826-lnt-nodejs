@@ -126,33 +126,52 @@ let fetchPrimes = function (min, max, id) {
     
     let event = new EventEmitter();
 
-    if (max < min) {
-        //emit event called error, with given value
-        event.emit('invalidinput', `invalid range ${max}<${min} in jobId ${id}`);
-    }
-    else {
 
-        let timerId = setInterval(() => {
+    //run this code after 10ms
+    //this time should be sufficient to
+    //register the events
+    setTimeout(function(){
+        if (max < min) {
+            //emit event called error, with given value
+            event.emit('error', `invalid range ${max}<${min} in jobId ${id}`);
+        }
+        else {
+    
+            let timerId = setInterval(() => {
+    
+                let prime = nextPrimeSync(number); //find next prime
+                index++;
+                if (prime >= max) {
+                    clearInterval(timerId); //no need to run further
+                    //return resolve({ result, id });
+                    event.emit('end', {id, total:index});
+                }
+                else{
+                    event.emit('prime', {prime,id,index});
+                    number = prime + 1;
+                }
+    
+    
+            }, 10); //run this function every 10 ms
+        }
 
-            let prime = nextPrimeSync(number); //find next prime
-            index++;
-            if (prime >= max) {
-                clearInterval(timerId); //no need to run further
-                //return resolve({ result, id });
-                event.emit('end', {id, total:index});
-            }
-            else{
-                event.emit('prime', {prime,id,index});
-                number = prime + 1;
-            }
+    },10); 
 
 
-        }, 10); //run this function every 10 ms
-    }
+  
 
 
     return event;
 
+}
+
+let primeGenerator= function *(min,max){
+
+    for(let value=min; value<max;value++)
+        if(isPrimeSync(value)){
+            console.log(value);
+            yield value;
+        }
 }
 
 
@@ -162,6 +181,7 @@ module.exports = {
     findPrimesSync,
     getPrimesAsync,
     fetchPrimes,
+    primeGenerator,
     findPrimes
 };
 

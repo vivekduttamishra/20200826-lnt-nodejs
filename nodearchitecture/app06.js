@@ -10,8 +10,10 @@ function testPrimes(min,max){
     console.log('starting job:', id);
 
     let event= fetchPrimes(min,max,id);
+
+    
     event
-        .on('invalidinput', error=>console.log('error',error))
+        .on('error', error=>console.log('error',error))
         .on('prime',p=>console.log(p))
         .on('end', result=>console.log(result.id,result.total));
         //I am not handling individual primes
