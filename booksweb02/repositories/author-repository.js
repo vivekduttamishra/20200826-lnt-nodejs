@@ -14,7 +14,10 @@ const collectionName='authors';
 const uri = `mongodb+srv://${username}:${password}@${server}/${dbname}?retryWrites=true&w=majority`;
 
 
-// const client = new MongoClient(uri, { useNewUrlParser: true });
+const client = new MongoClient(uri, { useNewUrlParser: true,useUnifiedTopology: true });
+
+// client.connect()
+
 // client.connect(err => {
 //   const collection = client.db("test").collection("devices");
 //   // perform actions on the collection object
@@ -23,87 +26,43 @@ const uri = `mongodb+srv://${username}:${password}@${server}/${dbname}?retryWrit
 
 
 
-
-
-
-
-
-let path=require('path');
-const { resolve } = require('path');
-
-
-
 class AuthorRepository{
 
     constructor(){
-        this.authors=[];
+        
+    }
+
+    async getAuthorCollection(){
+        await client.connect();
+        return  await client.db(dbname).collection(collectionName);
     }
 
     async getAll(){
-
-        if (this.authors.length===0){
-            //load the author from the path
-            await this.load();
-        };
-        return this.authors;
+        
+        let collection =await this.getAuthorCollection();
+        return await collection.find().toArray();
     
     }
 
     async add(author){
-        this.authors.push(author); //store locally in memory
-        await this.save();  //also save it in the file
+        //this.authors.push(author); //store locally in memory
+        //await this.save();  //also save it in the file
+
+        let collection=await this.getAuthorCollection();
+        collection.insert(author);
         
     }
 
     async getById(id){
-        let author=await (await this.getAll()).find(a=>a.id===id);
+        //let author=await (await this.getAll()).find(a=>a.id===id);
+        let collection=await this.getAuthorCollection();
+        let author =await collection.findOne({id:id});
         return author;
     }
 
     async remove(id){
-        let author=await this.getById(id);
-        if(author){
-            this.authors=this.authors.filter(a=>a.id!==id);
-            await this.save();
-            return true;
-        } else{
-            return false;
-        }
-
-    }
-
-    save(){
-
-        let path=process.env.AUTHORS_DB;
-        console.log('path',path);
-        fs.writeFile(path, JSON.stringify(this.authors), (error)=>{
-            if(!error){
-                resolve();
-            } else{
-                console.log(`error saving ${path}`);
-                reject(error);
-            }
-        });
-    }
-
-    load(){
-        return new Promise((resolve,reject)=>{
-
-            let path=process.env.AUTHORS_DB;
-
-            fs.readFile(path, (error,result)=>{
-                if(!error){
-                    this.authors=JSON.parse(result);
-                    resolve(this.authors);
-                } else{
-                    console.log(`Error loading ${path}. Starting as empty repository`);
-                    //reject(error);
-                    resolve(this.authors); //don't fail. just start a new array
-                }
-            });
-
-        });
-
+       let collection=await this.getAuthorCollection();
+       await collection.deleteOne({id:id});
     }
 
 }
