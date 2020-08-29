@@ -6,11 +6,26 @@ let contains=function(main,sub){
 
 class AuthorService{
 
-    constructor(){
-        this.authors=[]; //start with an empty list of authors
+    constructor(authorRepository){
+        this.authorRepository=authorRepository;
+        //this.authors=[]; //start with an empty list of authors
     }
 
-    add(author){
+    async add(author){
+        if(author && author.name){
+            console.log('author is added', author.name);
+            if(!author.id)
+                author.id=author.name.toLowerCase().replace(' ','-');
+            if(!author.books)
+                author.books=[];
+            await this.authorRepository.add(author);
+        }
+        else{
+            console.log('author add failed');
+        }
+    }
+
+    _add(author){
 
         return new Promise((resolve,reject)=>{
             console.log('author being added',author);
@@ -36,7 +51,7 @@ class AuthorService{
        
     }
 
-    getAll(){
+    _getAll(){
 
         let self=this;
         
@@ -48,6 +63,11 @@ class AuthorService{
 
             },10);            
         });
+    }
+
+    async getAll(){
+        let authors=await this.authorRepository.getAll();
+        return authors;
     }
 
     async getById(id){

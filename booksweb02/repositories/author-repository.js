@@ -5,8 +5,6 @@ const { resolve } = require('path');
 
 
 
-let authors=[];
-
 class AuthorRepository{
 
     constructor(){
@@ -31,7 +29,8 @@ class AuthorRepository{
 
     save(){
 
-        let path=process.env.AUTHOR_DB;
+        let path=process.env.AUTHORS_DB;
+        console.log('path',path);
         fs.writeFile(path, JSON.stringify(this.authors), (error)=>{
             if(!error){
                 resolve();
@@ -46,13 +45,15 @@ class AuthorRepository{
         return new Promise((resolve,reject)=>{
 
             let path=process.env.AUTHORS_DB;
+
             fs.readFile(path, (error,result)=>{
                 if(!error){
-                    this.authors=JSON.parse(data);
+                    this.authors=JSON.parse(result);
                     resolve(this.authors);
                 } else{
                     console.log(`Error loading ${path}`);
-                    reject(error);
+                    //reject(error);
+                    resolve(this.authors);
                 }
             });
 
@@ -61,3 +62,6 @@ class AuthorRepository{
     }
 
 }
+
+
+module.exports=AuthorRepository;

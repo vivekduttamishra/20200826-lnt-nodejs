@@ -1,14 +1,31 @@
 const AuthorService = require("../services/author-service");
 const Author=require('../entities/author');
-const authorRepository=require('../repositories/author-repository');
-
-var authorService=new AuthorService();
-
-authorService.add(new Author('vivek-dutta-mishra','Vivek Dutta Mishra','Author of the Amazon Best Seller The Accursed God','vivek.png','vivek@conceptarchitect.in'));
-authorService.add(new Author('jeffrey-archer','Jeffrey Archer','Contemporary best-seller fiction author','archer.png','jeffrey.archer@gmail.com'));
-authorService.add(new Author('ramdhari-singh-dinkar','Ramdhari Singh Dinkar','The National poet of India','dinker.png'));
+const AuthorRepository=require('../repositories/author-repository');
 
 
+
+let authorRepository=new AuthorRepository();
+
+async function seed(){
+    let authors= await authorRepository.getAll();
+    if(authors.length===0){
+        authors=[
+            new Author('vivek-dutta-mishra','Vivek Dutta Mishra','Author of the Amazon Best Seller The Accursed God','vivek.png','vivek@conceptarchitect.in'),
+            new Author('jeffrey-archer','Jeffrey Archer','Contemporary best-seller fiction author','archer.png','jeffrey.archer@gmail.com'),
+            new Author('ramdhari-singh-dinkar','Ramdhari Singh Dinkar','The National poet of India','dinker.png')
+        ];
+        authorRepository.authors=authors;
+        await authorRepository.save();
+    }
+}
+
+seed();
+
+// authorService.add(new Author('vivek-dutta-mishra','Vivek Dutta Mishra','Author of the Amazon Best Seller The Accursed God','vivek.png','vivek@conceptarchitect.in'));
+// authorService.add(new Author('jeffrey-archer','Jeffrey Archer','Contemporary best-seller fiction author','archer.png','jeffrey.archer@gmail.com'));
+// authorService.add(new Author('ramdhari-singh-dinkar','Ramdhari Singh Dinkar','The National poet of India','dinker.png'));
+
+var authorService=new AuthorService(authorRepository);
 
 
 async function  getAuthorList(request,response){
