@@ -7,15 +7,19 @@ const AuthorRepository=require('../repositories/author-repository');
 let authorRepository=new AuthorRepository();
 
 async function seed(){
+    //check if the current repostiory has some data
     let authors= await authorRepository.getAll();
+
+    //if repository is empty, then fill some dummy data
     if(authors.length===0){
+        console.log('seeding default data set');
         authors=[
-            new Author('vivek-dutta-mishra','Vivek Dutta Mishra','Author of the Amazon Best Seller The Accursed God','vivek.png','vivek@conceptarchitect.in'),
-            new Author('jeffrey-archer','Jeffrey Archer','Contemporary best-seller fiction author','archer.png','jeffrey.archer@gmail.com'),
-            new Author('ramdhari-singh-dinkar','Ramdhari Singh Dinkar','The National poet of India','dinker.png')
+            new Author('vivek-dutta-mishra','Vivek Dutta Mishra','Author of the Amazon Best Seller The Accursed God','vivek.jpg','vivek@conceptarchitect.in'),
+            new Author('jeffrey-archer','Jeffrey Archer','Contemporary best-seller fiction author','archer.jpg','jeffrey.archer@gmail.com'),
+            new Author('ramdhari-singh-dinkar','Ramdhari Singh Dinkar','The National poet of India','dinker.jpg')
         ];
         authorRepository.authors=authors;
-        await authorRepository.save();
+        await authorRepository.save(); 
     }
 }
 
@@ -56,16 +60,37 @@ async function addAuthor(request,response){
     }
 }
 
+async function showAuthorDetails(request,response){
+
+    let id= request.params.authorId; //this should be the last part of url /authors/details/:authorId
+
+    let author=await authorService.getById(id);
+
+    await response.render('authors/details',{author});
+
+};
+
+async function removeAuthor(request,response){
+    let id=request.params.authorId;
+    await authorService.remove(id);
+    await response.redirect('/authors'); //send back to author page
+}
 
 
 
 var express = require('express');
+const { render } = require("ejs");
 var router = express.Router();
 
 //all this will be mapped /authors/
 router.get('/', getAuthorList);
 router.get('/create', showAuthorForm);
 router.post('/create', addAuthor);
+
+//:authorId indicates it is a variable
+//router will automatically add the value to request.params
+router.get('/details/:authorId', showAuthorDetails);
+router.get('/delete/:authorId', removeAuthor);
 
 
 

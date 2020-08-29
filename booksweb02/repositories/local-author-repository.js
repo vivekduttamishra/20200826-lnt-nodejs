@@ -1,32 +1,5 @@
 let Author=require('../entities/author');
-
-const MongoClient = require('mongodb').MongoClient;
-
-const username='training';
-const password='training101';
-const server=training.wbunv.mongodb.net;
-
-
-const dbname='booksdb';
-const collectionName='authors';
-
-const uri = `mongodb+srv://${username}:${password}@${server}/${dbname}?retryWrites=true&w=majority`;
-
-
-// const client = new MongoClient(uri, { useNewUrlParser: true });
-// client.connect(err => {
-//   const collection = client.db("test").collection("devices");
-//   // perform actions on the collection object
-//   client.close();
-// });
-
-
-
-
-
-
-
-
+let fs=require('fs');
 let path=require('path');
 const { resolve } = require('path');
 

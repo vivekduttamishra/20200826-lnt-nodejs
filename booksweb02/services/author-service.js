@@ -71,18 +71,18 @@ class AuthorService{
     }
 
     async getById(id){
-        return
-         await this.authors.find(a=>a.id===id);
+        let author=await this.authorRepository.getById(id);
+        return author;
     }
 
     async search(term){
         
-        return await this.authors.filter(a=> contains(a.name,term) || contains(a.biography,term));
+        return await this.getAll().filter(a=> contains(a.name,term) || contains(a.biography,term));
     }
 
     async remove(id){
-        this.authors=await this.authors.filter(a=> a.id!==id);
-        return 
+        await this.authorRepository.remove(id);
+        
     }
 
     
