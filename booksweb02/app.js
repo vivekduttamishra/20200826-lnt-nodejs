@@ -15,10 +15,23 @@ var authorApiRouter= require('./routes/author-api-controller');
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+
+
+//specify which view engin you want to use
+//the view engine must be separately installed
+//npm i --save ejs
 app.set('view engine', 'ejs');
 
+//which folder contains the actual views
+app.set('views', path.join(__dirname, 'views'));
+
+
+//layoutmanager for ejs must be separated installed
+//npm -i --save express-ejs-layout
 var expressLayouts = require('express-ejs-layouts');
+
+//need to configure an extension of ejs to manage
+//layout for the view
 app.use(expressLayouts);
 app.set('layout','masterpage');
 
