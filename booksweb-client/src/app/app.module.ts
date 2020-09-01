@@ -1,6 +1,9 @@
 import { NgModule } from "@angular/core";
 import { BooksWebAppComponent} from "./books-web-app.component";
 import { BrowserModule} from '@angular/platform-browser';
+import {BooksWebHeaderComponent} from './books-web-header.component';
+import {BooksWebFooterComponent} from './books-web-footer.component'; 
+
 
 
 @NgModule({
@@ -10,15 +13,14 @@ import { BrowserModule} from '@angular/platform-browser';
     ],
 
     declarations:[ //list all the components and other elements related to current module
-        BooksWebAppComponent
-    ],
-
-    exports:[
-        BooksWebAppComponent
-    ],
+        BooksWebAppComponent,
+        BooksWebHeaderComponent,
+        BooksWebFooterComponent
+        
+    ],    
     
     bootstrap:[  //startup compoent for the module
-        BooksWebAppComponent
+        BooksWebAppComponent   //only root component should be in bootstrap
     ]
 })
 export class AppModule{

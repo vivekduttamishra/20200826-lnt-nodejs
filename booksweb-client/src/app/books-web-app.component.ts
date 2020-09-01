@@ -2,11 +2,14 @@ import { Component } from "@angular/core";
 
 
 @Component({
-    selector: 'app-books',  //custom html element or component identifier
+    selector: 'app-booksweb',  //custom html element or component identifier
     template:
     `
-    <h1>Books' Web</h1>
-    <p>The World of Books</p>
+    <app-booksweb-header></app-booksweb-header>
+    <div>
+        <h2>Book List</h2>
+    </div>
+    <app-booksweb-footer></app-booksweb-footer>
     `
 })
 export class BooksWebAppComponent{
