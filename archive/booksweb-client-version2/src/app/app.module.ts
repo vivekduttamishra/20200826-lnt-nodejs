@@ -1,10 +1,9 @@
 import { NgModule } from "@angular/core";
 import { BooksWebAppComponent} from "./books-web-app.component";
 import { BrowserModule} from '@angular/platform-browser';
-import {BooksWebHeaderComponent} from './books-web-header-component/books-web-header.component';
+import {BooksWebHeaderComponent} from './books-web-header.component';
 import {BooksWebFooterComponent} from './books-web-footer.component'; 
-import {BookListComponent} from './book-list.component';
-import { BookInfoComponent } from './book-info/book-info.component'; 
+import {BookListComponent} from './book-list.component'; 
 
 
 
@@ -19,8 +18,7 @@ import { BookInfoComponent } from './book-info/book-info.component';
         BooksWebAppComponent,
         BooksWebHeaderComponent,
         BooksWebFooterComponent,
-        BookListComponent,
-        BookInfoComponent
+        BookListComponent
         
     ],    
     
