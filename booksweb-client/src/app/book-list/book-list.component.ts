@@ -9,7 +9,13 @@ import {Book} from '../service/book';
 })
 export class BookListComponent implements OnInit {
 
+  public showImages=true;
   public books: Book[];
+  public imageWidth=120;
+  public maxWidth=200; //should never go above
+  public minWidth=50;  //should never go below this
+  public delta=10;  //each click should increase/decrease by this value
+
   constructor() { 
 
     this.books=[
@@ -56,6 +62,10 @@ export class BookListComponent implements OnInit {
     ];
 
 
+  }
+
+  toggleImages(){
+    this.showImages=!this.showImages;
   }
 
   ngOnInit(): void {
