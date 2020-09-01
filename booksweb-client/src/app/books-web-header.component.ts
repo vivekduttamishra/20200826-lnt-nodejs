@@ -2,27 +2,11 @@ import {Component} from '@angular/core';
 
 @Component({
     selector: 'app-booksweb-header',  //custom html element or component identifier
-    styles:[
-        `
-        h1{
-            font-size:3m;
-            text-shadow: -3px -3px 3px gray;
-        }
-        p{
-            color:gray;
-            text-style:italics;
-        }
-        `
+    styleUrls:[
+        'books-web-header.component.css'
     ],
-    template:
-    `
-    <h1>{{title}}</h1>
-    <p>
-    {{subTitle}} | {{time}}
-    </p> 
+    templateUrl:'books-web-header.component.html'
     
-    <hr/>
-    `
 })
 export class BooksWebHeaderComponent{
     //this is a javascript code
