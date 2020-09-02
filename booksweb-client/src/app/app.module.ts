@@ -9,7 +9,10 @@ import { BookListComponent } from './book-list/book-list.component';
 import { CaRangeComponent } from './ca-range/ca-range.component';
 import { CaRatingComponent } from './ca-rating/ca-rating.component';
 import { AltvaluePipe } from './altvalue.pipe';
-import { PrefixPipe } from './prefix.pipe'; 
+import { PrefixPipe } from './prefix.pipe';
+
+import { RatingadvisePipe } from './ratingadvise.pipe';
+import { BookCompositeComponent } from './book-composite/book-composite.component'; 
 
 
 
@@ -35,7 +38,15 @@ import { PrefixPipe } from './prefix.pipe';
         
         AltvaluePipe,
         
-        PrefixPipe
+        PrefixPipe,
+        
+        
+        
+        RatingadvisePipe,
+        
+        
+        
+        BookCompositeComponent
         
     ],    
     

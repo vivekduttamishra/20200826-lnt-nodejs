@@ -43,11 +43,11 @@
             <td>{{book.releaseDate|date:"MMMM yyyy"|uppercase}}</td>
             <td>
                 <ca-rating value='{{book.rating}}'  ></ca-rating>
-                
+                {{book.rating|ratingadvise}} 
 
             </td>
         </tr>
-     
+      
         
     </tbody>
 </table>
