@@ -18,7 +18,7 @@ import { Component, OnInit, Input } from '@angular/core';
       
       .starswrapper{              
         overflow: hidden;
-        display:inline;
+        
         
       }
 
