@@ -39,14 +39,12 @@ export class CaRangeComponent implements OnInit {
 
   //Here we receive input from parent in the child. Typically using attribute assignment
   
-  
+  @Input() public value=5;
   
   @Input() public min:number=0;
   @Input() public max=100;
   @Input() public delta=1;
 
-  @Input() public value=5;
-  
   //Here the child send information to parent using EventEmitter
 
   @Output() public valueChange=new EventEmitter<number>(); //note the name matches @Input() value
@@ -67,10 +65,7 @@ export class CaRangeComponent implements OnInit {
     }
     //this will send an update to the parent
 
-    //provides you a detailed change information
     this.changed.emit(new RangeInfo(this.value,newValue, newValue-this.value));
-
-    //this one provides exactly what you need to know
     this.valueChange.emit(newValue);
     this.value=newValue;
 

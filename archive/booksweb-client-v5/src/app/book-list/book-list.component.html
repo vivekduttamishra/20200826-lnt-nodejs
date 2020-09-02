@@ -8,17 +8,13 @@
         <tr>
             <th *ngIf='showImages'>
                 Poster
-                <ca-range 
+                <ca-range [value]='imageWidth' 
                 [min]='75' 
                 [max]='200' 
-                [delta]='15' 
-                
-                [(value)]='imageWidth' 
-                
-                
-
-
+                [delta]='20' 
                 (changed)='onImageWidthInfoChanged($event)'
+                (hit)='onHit($event)'
+                (valueChange)='onImageWidthChange($event)'
                 ></ca-range>
             </th>
             <th>Title</th>

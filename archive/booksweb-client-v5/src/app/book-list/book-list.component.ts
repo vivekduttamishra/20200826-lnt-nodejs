@@ -12,20 +12,9 @@ export class BookListComponent implements OnInit {
 
   public showImages=true;
   public books: Book[];
-  public imageWidth=120;
   
   constructor() { 
 
-  
-
-
-  }
-
-  toggleImages(){
-    this.showImages=!this.showImages;
-  }
-
-  ngOnInit(): void {
     this.books=[
       {
         "title": "The Accursed God",
@@ -68,17 +57,51 @@ export class BookListComponent implements OnInit {
         "tags": "classic, poetry, mahabharata, karna, hindi"
       },
     ];
+
+
+  }
+
+  toggleImages(){
+    this.showImages=!this.showImages;
+  }
+
+  ngOnInit(): void {
   }
 
 
- 
-  
-  
-  onImageWidthInfoChanged(r: RangeInfo){
+  public imageWidth=120;
+  public maxWidth=200; //should never go above
+  public minWidth=50;  //should never go below this
+  public delta=10;  //each click should increase/decrease by this value
 
-    console.log(r);
+  onImageWidthChange(newValue){
     
+    this.imageWidth=newValue;
   }
-  
+
+  increaseSize(){
+    this.change(this.imageWidth+this.delta);
+  }
+  decreaseSize(){
+    this.change(this.imageWidth-this.delta);
+  }
+
+  change(newSize){
+    if(newSize<this.minWidth)
+      newSize=this.minWidth;
+    else if(newSize>this.maxWidth)
+      newSize=this.maxWidth;
+    this.imageWidth=newSize;
+
+  }
+
+  onImageWidthInfoChanged(r: RangeInfo){
+    console.log(r);
+    //this.imageWidth=r.newValue;
+  }
+  onHit(boundry){
+   console.log('boundry',boundry);
+   
+  }
 
 }
