@@ -24,6 +24,7 @@
             <th>Title</th>
             <th>Author</th>
             <th>Price</th>
+            <th>Release Date</th>
             <th>Rating</th>
         </tr>
     </thead>
@@ -33,11 +34,13 @@
 
 
             <td *ngIf='showImages'   >  
-                <img [hidden]='!showImages'  [src]='book.cover'  [style.width.px]='imageWidth' >
+                
+                <img [hidden]='!showImages'  [src]='book.cover|altvalue:book.bookId:".jpg"|prefix:"/assets/images/books/"'  [style.width.px]='imageWidth' >
             </td>
-            <td>{{book.title}}</td>
-            <td>{{book. author}}</td>
-            <td>{{book.price}}</td>
+            <td>{{book.title|uppercase}}</td>
+            <td>{{book. author|lowercase}} </td>
+            <td>{{book.price|currency:'INR'}}</td>
+            <td>{{book.releaseDate|date:"MMMM yyyy"|uppercase}}</td>
             <td>
                 <ca-rating value='{{book.rating}}'  ></ca-rating>
                 
