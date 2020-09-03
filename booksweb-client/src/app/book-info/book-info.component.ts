@@ -10,6 +10,7 @@ export class BookInfoComponent implements OnInit {
 
   @Input() public book:Book;
 
+  
   constructor() { 
 
     this.book= {

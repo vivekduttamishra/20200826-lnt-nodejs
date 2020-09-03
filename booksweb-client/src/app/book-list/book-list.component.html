@@ -3,7 +3,7 @@
 
 <input type='checkbox'  [checked]='showImages'  (click)='toggleImages()'  /> Show Covers
 
-<table class="table table-condensed">
+<table class="table table-condensed table-striped table-hover"  >
     <thead>
         <tr>
             <th *ngIf='showImages'>
@@ -29,7 +29,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr  *ngFor='let book of books' >
+        <tr  *ngFor='let book of books' [routerLink]="['/book/details',book.bookId]" >
 
 
 
