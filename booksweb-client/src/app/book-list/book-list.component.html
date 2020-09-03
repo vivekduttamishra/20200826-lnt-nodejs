@@ -1,10 +1,10 @@
 
-<h1 class="page-title">Books</h1>
+<h1 ca-highlight class="page-title">Books</h1>
 
 <input type='checkbox'  [checked]='showImages'  (click)='toggleImages()'  /> Show Covers
 
 <table class="table table-condensed table-striped table-hover"  >
-    <thead>
+    <thead ca-highlight highlight-class='table-header'> 
         <tr>
             <th *ngIf='showImages'>
                 Poster
@@ -21,7 +21,7 @@
                 (changed)='onImageWidthInfoChanged($event)'
                 ></ca-range>
             </th>
-            <th>Title</th>
+            <th    >Title</th>
             <th>Author</th>
             <th>Price</th>
             <th>Release Date</th>
@@ -29,7 +29,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr  *ngFor='let book of books' [routerLink]="['/book/details',book.bookId]" >
+        <tr  *ngFor='let book of books' [routerLink]="['/book/details',book.isbn]" >
 
 
 
@@ -37,8 +37,8 @@
                 
                 <img [hidden]='!showImages'  [src]='book.cover|altvalue:book.bookId:".jpg"|prefix:"/assets/images/books/"'  [style.width.px]='imageWidth' >
             </td>
-            <td>{{book.title|uppercase}}</td>
-            <td>{{book. author|lowercase}} </td>
+            <td ca-highlight='lightskyblue' >{{book.title|uppercase}}</td>
+            <td ca-highlight='lightyellow'>{{book. author|lowercase}} </td>
             <td>{{book.price|currency:'INR'}}</td>
             <td>{{book.releaseDate|date:"MMMM yyyy"|uppercase}}</td>
             <td>
