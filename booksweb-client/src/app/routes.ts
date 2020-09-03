@@ -5,6 +5,7 @@ import {BookInfoComponent} from './book-info/book-info.component';
 import {CaNotFoundComponent} from './ca-not-found/ca-not-found.component'; 
 import { BookCreateComponent } from './book-create/book-create.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
+import { UserManagementModule } from './user-management/user-management.module';
 
 
 
@@ -19,6 +20,8 @@ export const appRoutes:Route[]=[
     {path: 'book/add', component: BookCreateComponent},
     
     {path: 'book/details/:bookId', component:BookDetailsComponent},
+
+    {path:'user', loadChildren:()=>UserManagementModule },
 
     {path: '404', component:CaNotFoundComponent},
 

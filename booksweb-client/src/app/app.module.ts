@@ -2,6 +2,8 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule} from '@angular/platform-browser';
 import {RouterModule} from '@angular/router'; 
+import {FormsModule} from '@angular/forms'; 
+
 
 
 
@@ -27,6 +29,10 @@ import { BookCreateComponent } from './book-create/book-create.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { CaHighlightDirective } from './ca-highlight.directive';
 import { CaRainbowColorDirective } from './ca-rainbow-color.directive'; 
+import { SimpleBookService } from './service/simple-book-service';
+
+import {UserManagementModule} from './user-management/user-management.module'; 
+
 
 
 
@@ -35,9 +41,10 @@ import { CaRainbowColorDirective } from './ca-rainbow-color.directive';
 
     imports:[
         BrowserModule,  //most important angular module to enable component rendering
-
+        FormsModule,
         //responsible for angular Single Page Routing design
         //You must load the RouterModule and supply the route information to be used
+        UserManagementModule, //all functinalities are included
         RouterModule.forRoot(appRoutes) 
     ],
 
@@ -58,36 +65,30 @@ import { CaRainbowColorDirective } from './ca-rainbow-color.directive';
         
         PrefixPipe,
         
-        
-        
         RatingadvisePipe,
-        
-        
         
         BookCompositeComponent,
         
-        
-        
         CaNotFoundComponent,
         
+        BookCreateComponent,      
         
         
-        BookCreateComponent,
+        BookDetailsComponent,      
         
         
-        
-        BookDetailsComponent,
-        
-        
-        
-        CaHighlightDirective,
-        
+        CaHighlightDirective,      
         
         
         CaRainbowColorDirective
         
     ],    
     
+    //set of services for dependency injection
+    providers:[
+        SimpleBookService
+    ],
+
     bootstrap:[  //startup compoent for the module
         BooksWebAppComponent   //only root component should be in bootstrap
     ]
