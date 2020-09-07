@@ -1,0 +1,75 @@
+Complete By September 09, 2020
+
+1. Create NodeJS based API server to render
+
+	Author Details
+	
+	GET
+		api/authors <-- list of authors
+		api/authors/:id <-- details of single author
+		api/authors/:id/books <-- list of books by author
+		api/authors?q=term    <-- list books matching search terms. search within name, biography, book title and book description
+
+	
+	POST api/authors <-- add a new author
+		
+	PUT  api/authors/:id <-- update author details
+
+	DELETE api/authors/:id <-- delete author and all books by author
+
+
+	Book Details
+
+	GET
+		api/authors <-- list of authors
+		api/authors/:id <-- details of single author
+		api/authors/:id/books <-- list of books by author
+		api/authors?q=term    <-- list books matching search terms. search within name, biography, book title and book description
+
+	
+	POST api/authors <-- add a new author
+		
+	PUT  api/authors/:id <-- update author details
+
+	DELETE api/authors/:id <-- delete author and all books by author
+
+BOOK DETAILS
+
+	GET
+		api/books <-- list of books
+		api/books/:id <-- details of single book
+		api/books/:id/books <-- list of books by book
+		api/books?q=term    <-- list books matching search terms. search within  title and book description
+
+	
+	POST api/books <-- add a new book
+		
+	PUT  api/books/:id <-- update book details
+
+	DELETE api/books/:id <-- delete book and all books by book
+
+
+			
+2. Create an Angular Project to act as front end for the API Server. Provide views for
+	* book list
+	* book details
+	* book add
+	* book delete
+	* author list
+	* author details
+	* author add
+	* author delete
+
+	
+
+
+3. The two application should be listening to different ports.
+
+4. Deploy them in two different docker image
+
+
+
+
+		
+
+	
