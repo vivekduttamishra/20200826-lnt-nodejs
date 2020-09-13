@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from '../service/book';
 import {ActivatedRoute, Router} from '@angular/router'; 
 import { SimpleBookService } from '../service/simple-book-service';
+import { HttpBookService } from '../service/http-book-service';
 
 
 @Component({
@@ -18,7 +19,8 @@ export class BookDetailsComponent implements OnInit {
 
     private activatedRoute : ActivatedRoute , 
     private router:Router,
-    private bookService:SimpleBookService
+    //private bookService:SimpleBookService
+    private bookService:HttpBookService
 
   ) { 
 
@@ -30,14 +32,19 @@ export class BookDetailsComponent implements OnInit {
 
     let bookId= this.activatedRoute.snapshot.params.bookId;
 
-    let book= this.bookService.getBook(bookId);
-
-    if(book)
-      this.selectedBook=book;
-    else    
-      this.router.navigateByUrl(`/404?error=No Such Book&id=${bookId}`);
+    //let book= this.bookService.getBook(bookId);
+    // if(book)
+    //   this.selectedBook=book;
+    // else    
+    //   this.router.navigateByUrl(`/404?error=No Such Book&id=${bookId}`);
     
+    this.bookService.getBook(bookId)
+        .subscribe(
+          book=> this.selectedBook=book,  //if request is successfull
 
+          error=> this.router.navigateByUrl(`/404?error=No Such Book&id=${bookId}`)
+
+        )
 
   }
 

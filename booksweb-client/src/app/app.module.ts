@@ -3,6 +3,10 @@ import { NgModule } from "@angular/core";
 import { BrowserModule} from '@angular/platform-browser';
 import {RouterModule} from '@angular/router'; 
 import {FormsModule} from '@angular/forms'; 
+import {HttpClientModule} from '@angular/common/http'; 
+
+
+
 
 
 
@@ -33,6 +37,8 @@ import { SimpleBookService } from './service/simple-book-service';
 
 import {UserManagementModule} from './user-management/user-management.module'; 
 
+import {HttpBookService} from './service/http-book-service'; 
+
 
 
 
@@ -45,6 +51,7 @@ import {UserManagementModule} from './user-management/user-management.module';
         //responsible for angular Single Page Routing design
         //You must load the RouterModule and supply the route information to be used
         UserManagementModule, //all functinalities are included
+        HttpClientModule,
         RouterModule.forRoot(appRoutes) 
     ],
 
@@ -86,7 +93,9 @@ import {UserManagementModule} from './user-management/user-management.module';
     
     //set of services for dependency injection
     providers:[
-        SimpleBookService
+        SimpleBookService,
+        HttpBookService
+        
     ],
 
     bootstrap:[  //startup compoent for the module

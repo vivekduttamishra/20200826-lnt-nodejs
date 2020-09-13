@@ -13,7 +13,9 @@ import { UserManagementModule } from './user-management/user-management.module';
 
 export const appRoutes:Route[]=[
     
-    {path: '', pathMatch:'full', component:BookCompositeComponent},
+    {path: '', pathMatch:'full', redirectTo:'book/list'},
+
+    {path:'books', component:BookCompositeComponent},
 
     {path: 'book/list', component: BookListComponent },
 

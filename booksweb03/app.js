@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors=require('cors');
 
 process.env.AUTHORS_DB=path.join(__dirname,'data','authors.db');
 
@@ -14,6 +15,31 @@ var authorApiRouter= require('./routes/author-api-controller');
 var bookApiRouter=require('./routes/book-api-controller');
 
 var app = express();
+
+//configure the CORS
+
+//configure whitelist domains
+
+var whitelist = [
+      'http://localhost:3000', 
+      'http://localhost:5000',
+      'http://localhost:7000'
+      
+    ];
+
+
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      //callback(new Error('Not allowed by CORS'))
+      callback(null,true);
+    }
+  }
+};
+
+app.use(cors(corsOptions)); //allows requests only from few whitelisted domains
 
 // view engine setup
 

@@ -1,5 +1,5 @@
 
-<h1 ca-highlight class="page-title">Books</h1>
+<h1 ca-highlight class="page-title">Recommended Books</h1>
 
 <input type='checkbox'  [checked]='showImages'  (click)='toggleImages()'  /> Show Covers
 
@@ -29,13 +29,13 @@
         </tr>
     </thead>
     <tbody>
-        <tr  *ngFor='let book of books' [routerLink]="['/book/details',book.isbn]" >
+        <tr  *ngFor='let book of bookList | async' [routerLink]="['/book/details',book.isbn]" >
 
 
 
             <td *ngIf='showImages'   >  
                 
-                <img [hidden]='!showImages'  [src]='book.cover|altvalue:book.isbn:".jpg"|prefix:"/assets/images/books/"'  [style.width.px]='imageWidth' >
+                <img [hidden]='!showImages'  [src]='book.cover'  [style.width.px]='imageWidth' >
             </td>
             <td ca-highlight='lightskyblue' >{{book.title|uppercase}}</td>
             <td ca-highlight='lightyellow'>{{book. author|lowercase}} </td>
@@ -54,4 +54,4 @@
 
 
 <hr/>
-<p class='tags'>Total books: {{books.length}}</p>
+<p class='tags'>{{status}}</p>
