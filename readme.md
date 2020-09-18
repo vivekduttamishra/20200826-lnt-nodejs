@@ -13,11 +13,12 @@ Please go throught the additional video lines
 1. [How to implement Simple REST End Point in Angular Project](https://www.youtube.com/watch?v=YEJmma5jUPE&list=PL3GaEoSTHpBsZIhRNawAKWLt2ftb9ooFK&index=2&t=0s)
  
 2. [RxJs Programming 5 Episode Series](https://youtu.be/YEJmma5jUPE)
+3. [Consuming Rest API in Angular using RxJs](https://youtu.be/mnQcZHnHs8Y)
 
 ## To be published (in same playlist)
+### Please subscribe the channel to get the latest videos
 
-3. Consuming REST API Using http Service
-4. Consuming Services in Component
+
 5. Accessing Data from different API Server created in NodeJS. Understanding CORS
 6. Deploying Angular Project
     1. Preparing for build
