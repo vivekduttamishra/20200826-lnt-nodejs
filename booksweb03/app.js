@@ -22,19 +22,24 @@ var app = express();
 
 var whitelist = [
       'http://localhost:3000', 
-      'http://localhost:5000',
-      'http://localhost:7000'
+      'http://localhost:7000',
+      'http://localhost:5000'
+      
       
     ];
 
 
 var corsOptions = {
   origin: function (origin, callback) {
+    console.log('testing origin', origin);
+    if(origin===undefined)
+      return callback(null,true); //what to do with undefined hosts?
     if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
+      console.log('allowing origin', origin);
+      callback(null, true); 
     } else {
-      //callback(new Error('Not allowed by CORS'))
-      callback(null,true);
+      callback(new Error('Not allowed by CORS'))
+      //callback(null,true);
     }
   }
 };

@@ -15,14 +15,14 @@ Please go throught the additional video lines
 2. [RxJs Programming 5 Episode Series](https://youtu.be/YEJmma5jUPE)
 3. [Consuming Rest API in Angular using RxJs](https://youtu.be/mnQcZHnHs8Y)
 
+4. [Accessing cross domain service using CORS](https://youtu.be/bnJOp-fvOq8)
+
 ## To be published (in same playlist)
 ### Please subscribe the channel to get the latest videos
 
-
-5. Accessing Data from different API Server created in NodeJS. Understanding CORS
-6. Deploying Angular Project
+5. Deploying Angular Project
     1. Preparing for build
     2. Deploying on Apache
     
-7. Deploying MEAN in a single project
-8. Deploying on Docker
+6. Deploying MEAN in a single project
+7. Deploying on Docker
